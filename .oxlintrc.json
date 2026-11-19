@@ -17,6 +17,7 @@
         "destructuredArrayIgnorePattern": "^_"
       }
     ],
+    "curly": ["error", "all"],
     "no-underscore-dangle": "off",
     "typescript/consistent-return": "off",
     "import/no-cycle": "error",
