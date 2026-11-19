@@ -18,6 +18,7 @@
       }
     ],
     "no-underscore-dangle": "off",
+    "typescript/consistent-return": "off",
     "import/no-cycle": "error",
     "typescript/no-deprecated": "error",
     "typescript/no-misused-promises": "error",
@@ -41,7 +42,14 @@
   },
   "globals": {},
   "ignorePatterns": [],
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["tests/**"],
+      "rules": {
+        "typescript/no-unsafe-type-assertion": "off"
+      }
+    }
+  ],
   "options": {
     "typeAware": true,
     "typeCheck": true
