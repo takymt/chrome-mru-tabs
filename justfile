@@ -20,4 +20,7 @@ lint:
 lint-fix:
     pnpm exec oxlint --fix --deny-warnings
 
-check: lint fmt-check
+test:
+    pnpm exec vitest run --dir tests
+
+check: lint fmt-check test
