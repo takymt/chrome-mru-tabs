@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Chrome extension packaging (never commit the signing key)
+*.crx
+*.pem
+*.zip
+
+# Test output
+coverage/
+
+# Lefthook local overrides
+lefthook-local.yml
+.lefthook-local.yml
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Nix and direnv
+result
+result-*
+.direnv/
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
