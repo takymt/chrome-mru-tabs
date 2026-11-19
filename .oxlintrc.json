@@ -18,6 +18,8 @@
       }
     ],
     "curly": ["error", "all"],
+    "no-ternary": "error",
+    "prefer-arrow-callback": "error",
     "no-underscore-dangle": "off",
     "typescript/consistent-return": "off",
     "import/no-cycle": "error",

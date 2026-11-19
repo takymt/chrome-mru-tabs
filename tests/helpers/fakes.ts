@@ -5,10 +5,15 @@ export const createFakeStorageArea = (initial: Record<string, unknown> = {}) => 
   let failure: Error | undefined;
 
   const area: StorageArea = {
-    get: (key) =>
-      failure
-        ? Promise.reject(failure)
-        : Promise.resolve(data.has(key) ? { [key]: data.get(key) } : {}),
+    get: (key) => {
+      if (failure) {
+        return Promise.reject(failure);
+      }
+      if (!data.has(key)) {
+        return Promise.resolve({});
+      }
+      return Promise.resolve({ [key]: data.get(key) });
+    },
     set: (items) => {
       if (failure) {
         return Promise.reject(failure);

@@ -3,13 +3,20 @@ import type { History, Step, TabId } from "./types";
 
 export const HISTORY_LIMIT = 50;
 
-const remember = (history: History, id: TabId | undefined): History =>
-  id === undefined ? history : cap(visit(history, id), HISTORY_LIMIT);
+const remember = (history: History, id: TabId | undefined): History => {
+  if (id === undefined) {
+    return history;
+  }
+  return cap(visit(history, id), HISTORY_LIMIT);
+};
 
 export const step: Step = (history, observation) => {
   switch (observation.type) {
     case "tabActivated":
-      return observation.windowFocused ? remember(history, observation.tabId) : history;
+      if (!observation.windowFocused) {
+        return history;
+      }
+      return remember(history, observation.tabId);
     case "tabRemoved":
       return forget(history, observation.tabId);
     case "tabReplaced":

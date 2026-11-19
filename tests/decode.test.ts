@@ -36,9 +36,9 @@ describe("decodeHistory", () => {
       fc.property(fc.anything(), (value) => {
         const result = decodeHistory(value);
 
-        const acceptable = result.ok
-          ? isValidHistory(result.value)
-          : result.error.type === "invalidStoredHistory";
+        const acceptable =
+          (result.ok && isValidHistory(result.value)) ||
+          (!result.ok && result.error.type === "invalidStoredHistory");
         expect(acceptable).toBe(true);
       }),
     );
