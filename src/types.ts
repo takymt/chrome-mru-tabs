@@ -37,10 +37,19 @@ export type ParseCommand = (name: string) => Result<Command, UnknownCommand>;
 export type StorageFailed = Readonly<{ type: "storageFailed"; cause: unknown }>;
 export type InvalidStoredHistory = Readonly<{ type: "invalidStoredHistory"; value: unknown }>;
 
+export type DecodeHistory = (value: unknown) => Result<History, InvalidStoredHistory>;
+
+export type StorageArea = Readonly<{
+  get: (key: string) => Promise<Record<string, unknown>>;
+  set: (items: Record<string, unknown>) => Promise<void>;
+}>;
+
 export type Store = Readonly<{
   load: () => Promise<Result<History, StorageFailed | InvalidStoredHistory>>;
   save: (history: History) => Promise<Result<void, StorageFailed>>;
 }>;
+
+export type CreateStore = (area: StorageArea) => Store;
 
 export type TabNotFound = Readonly<{ type: "tabNotFound"; tabId: TabId }>;
 
